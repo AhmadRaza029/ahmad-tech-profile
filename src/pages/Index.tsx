@@ -1,6 +1,5 @@
-
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowDown, Mail, Phone, Github, Linkedin, ExternalLink, Code, GraduationCap, User, Briefcase, MessageCircle } from 'lucide-react';
+import { Menu, X, ArrowDown, Mail, Phone, Github, Linkedin, ExternalLink, Code, GraduationCap, User, Briefcase, MessageCircle, Sparkles, Download } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -8,6 +7,7 @@ import { Badge } from '@/components/ui/badge';
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [isVisible, setIsVisible] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -18,6 +18,8 @@ const Index = () => {
   };
 
   useEffect(() => {
+    setIsVisible(true);
+    
     const handleScroll = () => {
       const sections = ['home', 'about', 'portfolio', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
@@ -55,12 +57,22 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900">
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-40 -left-40 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+        <div className="absolute bottom-40 right-20 w-60 h-60 bg-cyan-500/10 rounded-full blur-3xl animate-pulse delay-2000"></div>
+      </div>
+
       {/* Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/95 backdrop-blur-sm border-b border-slate-700">
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-xl border-b border-slate-700/50">
         <div className="container mx-auto px-4">
           <div className="flex items-center justify-between h-16">
-            <div className="text-xl font-bold text-white">
+            <div className="text-xl font-bold text-white flex items-center">
+              <div className="w-8 h-8 bg-gradient-to-r from-blue-400 to-purple-500 rounded-lg mr-2 flex items-center justify-center">
+                <span className="text-white font-bold text-sm">AR</span>
+              </div>
               Ahmad Raza
             </div>
 
@@ -70,18 +82,21 @@ const Index = () => {
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-colors hover:text-blue-400 ${
+                  className={`text-sm font-medium transition-all duration-300 hover:text-blue-400 relative ${
                     activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
                   }`}
                 >
                   {item.label}
+                  {activeSection === item.id && (
+                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>
+                  )}
                 </button>
               ))}
             </div>
 
             {/* Mobile Menu Button */}
             <button
-              className="md:hidden text-white"
+              className="md:hidden text-white p-2 rounded-lg hover:bg-slate-800 transition-colors"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             >
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -90,14 +105,14 @@ const Index = () => {
 
           {/* Mobile Navigation */}
           {isMenuOpen && (
-            <div className="md:hidden py-4 bg-slate-800 rounded-lg mt-2">
+            <div className="md:hidden py-4 bg-slate-800/95 backdrop-blur-sm rounded-lg mt-2 border border-slate-700">
               {navigationItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="flex items-center w-full px-4 py-2 text-left text-gray-300 hover:text-blue-400 hover:bg-slate-700"
+                  className="flex items-center w-full px-4 py-3 text-left text-gray-300 hover:text-blue-400 hover:bg-slate-700/50 transition-all duration-200"
                 >
-                  <item.icon size={16} className="mr-3" />
+                  <item.icon size={18} className="mr-3" />
                   {item.label}
                 </button>
               ))}
@@ -106,42 +121,133 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Home Section */}
-      <section id="home" className="min-h-screen flex items-center pt-16">
-        <div className="container mx-auto px-4">
-          <div className="flex flex-col lg:flex-row items-center justify-between">
-            <div className="lg:w-1/2 text-center lg:text-left mb-8 lg:mb-0">
-              <h1 className="text-5xl lg:text-6xl font-bold text-white mb-4 animate-fade-in">
-                Hi, I'm <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-500">Ahmad Raza</span>
-              </h1>
-              <p className="text-xl text-gray-300 mb-6 animate-fade-in">
-                Final-year B.Tech Computer Science student passionate about building smart, user-centric web and mobile applications
-              </p>
-              <div className="flex flex-wrap gap-2 mb-8 justify-center lg:justify-start">
-                <Badge variant="outline" className="text-blue-400 border-blue-400">Full-Stack Development</Badge>
-                <Badge variant="outline" className="text-purple-400 border-purple-400">Flutter</Badge>
-                <Badge variant="outline" className="text-green-400 border-green-400">Firebase</Badge>
-                <Badge variant="outline" className="text-orange-400 border-orange-400">Data-Driven Solutions</Badge>
+      {/* Enhanced Hero Section */}
+      <section id="home" className="min-h-screen flex items-center pt-16 relative">
+        <div className="container mx-auto px-4 relative z-10">
+          <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
+            <div className={`lg:w-1/2 text-center lg:text-left transition-all duration-1000 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              {/* Status Badge */}
+              <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium mb-6">
+                <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
+                Available for opportunities
               </div>
-              <Button 
-                onClick={() => scrollToSection('contact')}
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 text-lg"
-              >
-                Get In Touch
-              </Button>
+
+              <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+                Hi, I'm{' '}
+                <span className="relative">
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
+                    Ahmad Raza
+                  </span>
+                  <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 via-purple-500/20 to-cyan-400/20 blur-xl -z-10"></div>
+                </span>
+              </h1>
+
+              <p className="text-xl lg:text-2xl text-gray-300 mb-8 leading-relaxed max-w-2xl">
+                Final-year <span className="text-blue-400 font-semibold">B.Tech Computer Science</span> student passionate about building 
+                <span className="text-purple-400 font-semibold"> smart, user-centric</span> web and mobile applications
+              </p>
+
+              <div className="flex flex-wrap gap-3 mb-10 justify-center lg:justify-start">
+                <Badge variant="outline" className="text-blue-400 border-blue-400/30 bg-blue-400/5 px-4 py-2 text-sm font-medium hover:bg-blue-400/10 transition-colors">
+                  <Code className="w-4 h-4 mr-2" />
+                  Full-Stack Development
+                </Badge>
+                <Badge variant="outline" className="text-purple-400 border-purple-400/30 bg-purple-400/5 px-4 py-2 text-sm font-medium hover:bg-purple-400/10 transition-colors">
+                  <Sparkles className="w-4 h-4 mr-2" />
+                  Flutter
+                </Badge>
+                <Badge variant="outline" className="text-green-400 border-green-400/30 bg-green-400/5 px-4 py-2 text-sm font-medium hover:bg-green-400/10 transition-colors">
+                  Firebase
+                </Badge>
+                <Badge variant="outline" className="text-orange-400 border-orange-400/30 bg-orange-400/5 px-4 py-2 text-sm font-medium hover:bg-orange-400/10 transition-colors">
+                  Data-Driven Solutions
+                </Badge>
+              </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                <Button 
+                  onClick={() => scrollToSection('contact')}
+                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
+                >
+                  <Mail className="w-5 h-5 mr-2" />
+                  Get In Touch
+                </Button>
+                <Button 
+                  variant="outline"
+                  className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
+                  onClick={() => scrollToSection('portfolio')}
+                >
+                  <Download className="w-5 h-5 mr-2" />
+                  View Projects
+                </Button>
+              </div>
+
+              {/* Social Links */}
+              <div className="flex gap-4 mt-8 justify-center lg:justify-start">
+                <a href="https://github.com/ahmad-raza" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
+                  <Github size={20} />
+                </a>
+                <a href="https://linkedin.com/in/ahmad-raza" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
+                  <Linkedin size={20} />
+                </a>
+                <a href="mailto:ahmad.raza@example.com" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
+                  <Mail size={20} />
+                </a>
+              </div>
             </div>
-            <div className="lg:w-1/2 flex justify-center">
-              <div className="w-80 h-80 rounded-full bg-gradient-to-br from-blue-400 to-purple-600 p-1 animate-scale-in">
-                <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center">
-                  <div className="w-72 h-72 rounded-full bg-gradient-to-br from-gray-300 to-gray-400 flex items-center justify-center text-6xl font-bold text-slate-800">
-                    AR
+
+            {/* Enhanced Profile Picture Section */}
+            <div className={`lg:w-1/2 flex justify-center transition-all duration-1000 delay-300 ${
+              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
+            }`}>
+              <div className="relative">
+                {/* Animated rings */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-600 p-1 animate-spin" style={{animationDuration: '8s'}}>
+                  <div className="w-full h-full rounded-full bg-slate-900"></div>
+                </div>
+                <div className="absolute inset-2 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 p-1 animate-spin" style={{animationDuration: '6s', animationDirection: 'reverse'}}>
+                  <div className="w-full h-full rounded-full bg-slate-900"></div>
+                </div>
+                
+                {/* Main profile container */}
+                <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 p-2 shadow-2xl">
+                  <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center relative overflow-hidden">
+                    {/* Profile Image Placeholder with enhanced styling */}
+                    <div className="w-72 h-72 lg:w-88 lg:h-88 rounded-full bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center text-6xl lg:text-7xl font-bold text-slate-800 shadow-inner">
+                      AR
+                    </div>
+                    
+                    {/* Floating particles */}
+                    <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
+                    <div className="absolute bottom-6 left-6 w-2 h-2 bg-purple-400 rounded-full animate-ping delay-1000"></div>
+                    <div className="absolute top-1/3 left-4 w-1 h-1 bg-cyan-400 rounded-full animate-ping delay-2000"></div>
                   </div>
+                </div>
+
+                {/* Floating skill badges */}
+                <div className="absolute -top-4 -left-4 bg-blue-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium animate-bounce">
+                  React.js
+                </div>
+                <div className="absolute -bottom-4 -right-4 bg-purple-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium animate-bounce delay-1000">
+                  Flutter
+                </div>
+                <div className="absolute top-1/2 -right-8 bg-green-500/90 backdrop-blur-sm text-white px-3 py-1 rounded-full text-sm font-medium animate-bounce delay-500">
+                  Firebase
                 </div>
               </div>
             </div>
           </div>
-          <div className="text-center mt-16">
-            <ArrowDown className="mx-auto text-gray-400 animate-bounce" size={24} />
+
+          {/* Enhanced scroll indicator */}
+          <div className="text-center mt-20">
+            <div className="inline-flex flex-col items-center">
+              <span className="text-gray-400 text-sm mb-2 font-medium">Scroll to explore</span>
+              <div className="w-6 h-10 border-2 border-gray-600 rounded-full flex justify-center">
+                <div className="w-1 h-3 bg-gradient-to-b from-blue-400 to-purple-500 rounded-full mt-2 animate-bounce"></div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
