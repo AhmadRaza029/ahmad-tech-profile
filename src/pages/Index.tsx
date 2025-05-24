@@ -213,11 +213,13 @@ const Index = () => {
                 
                 {/* Main profile container */}
                 <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 p-2 shadow-2xl">
-                  <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center relative overflow-hidden">
-                    {/* Profile Image Placeholder with enhanced styling */}
-                    <div className="w-72 h-72 lg:w-88 lg:h-88 rounded-full bg-gradient-to-br from-gray-200 to-gray-400 flex items-center justify-center text-6xl lg:text-7xl font-bold text-slate-800 shadow-inner">
-                      AR
-                    </div>
+                  <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center relative overflow-hidden p-1">
+                    {/* Profile Image */}
+                    <img 
+                      src="https://i.postimg.cc/pLFCGpCv/BARC.jpg" 
+                      alt="Ahmad Raza"
+                      className="w-full h-full rounded-full object-cover shadow-inner"
+                    />
                     
                     {/* Floating particles */}
                     <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
