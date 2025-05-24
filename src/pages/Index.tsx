@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Menu, X, ArrowDown, Mail, Phone, Github, Linkedin, ExternalLink, Code, GraduationCap, User, Briefcase, MessageCircle, Sparkles, Download } from 'lucide-react';
+import { Menu, X, ArrowDown, Mail, Phone, Github, Linkedin, ExternalLink, Code, GraduationCap, User, Briefcase, MessageCircle, Sparkles, Download, Bot, Users } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
@@ -7,6 +7,7 @@ const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isVisible, setIsVisible] = useState(false);
+
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -16,6 +17,7 @@ const Index = () => {
     }
     setIsMenuOpen(false);
   };
+
   useEffect(() => {
     setIsVisible(true);
     const handleScroll = () => {
@@ -38,6 +40,7 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
   const navigationItems = [{
     id: 'home',
     label: 'Home',
@@ -59,6 +62,7 @@ const Index = () => {
     label: 'Contact',
     icon: MessageCircle
   }];
+
   const skills = {
     'Programming Languages': ['JavaScript (ES6+)', 'TypeScript', 'Dart (Flutter)', 'HTML5', 'CSS3', 'SCSS'],
     'Frameworks & Libraries': ['React.js', 'Next.js', 'Flutter'],
@@ -66,6 +70,7 @@ const Index = () => {
     'Tools & Technologies': ['Git & GitHub', 'VS Code', 'REST APIs', 'JWT', 'Firebase SDK', 'Appwrite SDK'],
     'Other Expertise': ['Responsive Web Design', 'SPA Development', 'Cross-platform Mobile Development', 'UI/UX Design', 'Animation Libraries']
   };
+
   return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -277,73 +282,137 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Portfolio Section */}
+      {/* Enhanced Portfolio Section */}
       <section id="portfolio" className="py-20">
         <div className="container mx-auto px-4">
-          <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Project</h2>
-          <Card className="bg-slate-800 border-slate-600 max-w-4xl mx-auto">
-            <CardHeader>
-              <CardTitle className="text-white text-2xl">Web-Based Hostel Allotment System</CardTitle>
-              <CardDescription className="text-gray-400">Using Weighted Sum Model (WSM) for Data-Driven Allocation</CardDescription>
-            </CardHeader>
-            <CardContent className="space-y-6">
-              <div>
-                <h4 className="font-semibold text-white mb-2">Problem Statement</h4>
-                <p className="text-gray-300">
-                  Traditional hostel allotment methods often lack transparency and efficiency, leading to disputes and 
-                  unfair allocations. Manual processes are time-consuming and prone to human error.
-                </p>
-              </div>
-              
-              <div>
-                <h4 className="font-semibold text-white mb-2">Solution</h4>
-                <p className="text-gray-300">
-                  Developed a comprehensive web application using the Weighted Sum Model (WSM) for objective, 
-                  data-driven student scoring and hostel allocation. The system ensures transparency, 
-                  efficiency, and fairness in the allocation process.
-                </p>
-              </div>
-
-              <div>
-                <h4 className="font-semibold text-white mb-2">Key Features</h4>
-                <ul className="text-gray-300 space-y-1">
-                  <li>• Student registration and profile management</li>
-                  <li>• Automated scoring using WSM algorithm</li>
-                  <li>• Real-time application tracking</li>
-                  <li>• Admin management interface</li>
-                  <li>• Transparent allocation results</li>
-                </ul>
-              </div>
-
-              <div>
-                <h4 className="font-semibold text-white mb-2">Technologies Used</h4>
-                <div className="flex flex-wrap gap-2">
-                  <Badge variant="outline" className="text-orange-400 border-orange-400">HTML5</Badge>
-                  <Badge variant="outline" className="text-blue-400 border-blue-400">CSS3</Badge>
-                  <Badge variant="outline" className="text-yellow-400 border-yellow-400">JavaScript</Badge>
-                  <Badge variant="outline" className="text-purple-400 border-purple-400">Appwrite</Badge>
+          <h2 className="text-4xl font-bold text-white text-center mb-12">Featured Projects</h2>
+          <div className="grid lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            
+            {/* Hostel Allotment System */}
+            <Card className="bg-slate-800 border-slate-600">
+              <CardHeader>
+                <CardTitle className="text-white text-xl flex items-center">
+                  <Users className="mr-2 text-blue-400" size={24} />
+                  Web-Based Hostel Allotment System
+                </CardTitle>
+                <CardDescription className="text-gray-400">Using Weighted Sum Model (WSM) for Data-Driven Allocation</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Problem Statement</h4>
+                  <p className="text-gray-300 text-sm">
+                    Traditional hostel allotment methods often lack transparency and efficiency, leading to disputes and 
+                    unfair allocations. Manual processes are time-consuming and prone to human error.
+                  </p>
                 </div>
-              </div>
+                
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Solution</h4>
+                  <p className="text-gray-300 text-sm">
+                    Developed a comprehensive web application using the Weighted Sum Model (WSM) for objective, 
+                    data-driven student scoring and hostel allocation ensuring transparency and fairness.
+                  </p>
+                </div>
 
-              <div>
-                <h4 className="font-semibold text-white mb-2">Benefits</h4>
-                <div className="grid md:grid-cols-2 gap-4">
-                  <div className="text-gray-300">
-                    <span className="text-green-400">✓</span> Enhanced transparency
-                  </div>
-                  <div className="text-gray-300">
-                    <span className="text-green-400">✓</span> Improved efficiency
-                  </div>
-                  <div className="text-gray-300">
-                    <span className="text-green-400">✓</span> Reduced human errors
-                  </div>
-                  <div className="text-gray-300">
-                    <span className="text-green-400">✓</span> Better user experience
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Key Features</h4>
+                  <ul className="text-gray-300 text-sm space-y-1">
+                    <li>• Student registration and profile management</li>
+                    <li>• Automated scoring using WSM algorithm</li>
+                    <li>• Real-time application tracking</li>
+                    <li>• Admin management interface</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Technologies</h4>
+                  <div className="flex flex-wrap gap-2">
+                    <Badge variant="outline" className="text-orange-400 border-orange-400/30 bg-orange-400/5">HTML5</Badge>
+                    <Badge variant="outline" className="text-blue-400 border-blue-400/30 bg-blue-400/5">CSS3</Badge>
+                    <Badge variant="outline" className="text-yellow-400 border-yellow-400/30 bg-yellow-400/5">JavaScript</Badge>
+                    <Badge variant="outline" className="text-purple-400 border-purple-400/30 bg-purple-400/5">Appwrite</Badge>
                   </div>
                 </div>
-              </div>
-            </CardContent>
-          </Card>
+              </CardContent>
+            </Card>
+
+            {/* Human Following Robot */}
+            <Card className="bg-slate-800 border-slate-600">
+              <CardHeader>
+                <CardTitle className="text-white text-xl flex items-center">
+                  <Bot className="mr-2 text-green-400" size={24} />
+                  Human Following Robot
+                </CardTitle>
+                <CardDescription className="text-gray-400">Autonomous Mobile Robot with Advanced Sensor Integration</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Project Overview</h4>
+                  <p className="text-gray-300 text-sm">
+                    An intelligent autonomous mobile robot that detects, tracks, and follows humans using ultrasonic sensors 
+                    and embedded systems. Demonstrates hardware-software integration for robotic assistance applications.
+                  </p>
+                </div>
+                
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Core Technology</h4>
+                  <p className="text-gray-300 text-sm">
+                    Utilizes ultrasonic sensors for distance measurement, Arduino microcontroller for data processing, 
+                    and motor drivers for precise movement control with real-time path adjustment capabilities.
+                  </p>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Key Features</h4>
+                  <ul className="text-gray-300 text-sm space-y-1">
+                    <li>• Real-time human detection and tracking</li>
+                    <li>• Autonomous path planning and navigation</li>
+                    <li>• Obstacle avoidance system</li>
+                    <li>• Consistent distance maintenance</li>
+                    <li>• Multi-sensor data fusion</li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Applications</h4>
+                  <div className="flex flex-wrap gap-2 mb-3">
+                    <Badge variant="outline" className="text-cyan-400 border-cyan-400/30 bg-cyan-400/5">Retail Assistant</Badge>
+                    <Badge variant="outline" className="text-red-400 border-red-400/30 bg-red-400/5">Healthcare</Badge>
+                    <Badge variant="outline" className="text-indigo-400 border-indigo-400/30 bg-indigo-400/5">Logistics</Badge>
+                    <Badge variant="outline" className="text-emerald-400 border-emerald-400/30 bg-emerald-400/5">Elderly Care</Badge>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Performance Metrics</h4>
+                  <div className="grid grid-cols-2 gap-2 text-sm">
+                    <div className="text-gray-300">
+                      <span className="text-green-400">✓</span> Reliable human following
+                    </div>
+                    <div className="text-gray-300">
+                      <span className="text-green-400">✓</span> Accurate turning response
+                    </div>
+                    <div className="text-gray-300">
+                      <span className="text-green-400">✓</span> Consistent distance control
+                    </div>
+                    <div className="text-gray-300">
+                      <span className="text-green-400">✓</span> Safe navigation
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h4 className="font-semibold text-white mb-2">Future Enhancements</h4>
+                  <ul className="text-gray-300 text-sm space-y-1">
+                    <li>• AI integration for facial recognition</li>
+                    <li>• Computer vision for advanced tracking</li>
+                    <li>• Voice command functionality</li>
+                    <li>• GPS and LIDAR for outdoor operation</li>
+                  </ul>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
         </div>
       </section>
 
@@ -436,4 +505,5 @@ const Index = () => {
       </footer>
     </div>;
 };
+
 export default Index;
