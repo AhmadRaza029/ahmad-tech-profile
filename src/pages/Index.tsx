@@ -7,7 +7,6 @@ const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isVisible, setIsVisible] = useState(false);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
@@ -17,7 +16,6 @@ const Index = () => {
     }
     setIsMenuOpen(false);
   };
-
   useEffect(() => {
     setIsVisible(true);
     const handleScroll = () => {
@@ -40,7 +38,6 @@ const Index = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
   const navigationItems = [{
     id: 'home',
     label: 'Home',
@@ -62,7 +59,6 @@ const Index = () => {
     label: 'Contact',
     icon: MessageCircle
   }];
-
   const skills = {
     'Programming Languages': ['JavaScript (ES6+)', 'TypeScript', 'Dart (Flutter)', 'HTML5', 'CSS3', 'SCSS'],
     'Frameworks & Libraries': ['React.js', 'Next.js', 'Flutter'],
@@ -70,7 +66,6 @@ const Index = () => {
     'Tools & Technologies': ['Git & GitHub', 'VS Code', 'REST APIs', 'JWT', 'Firebase SDK', 'Appwrite SDK'],
     'Other Expertise': ['Responsive Web Design', 'SPA Development', 'Cross-platform Mobile Development', 'UI/UX Design', 'Animation Libraries']
   };
-
   return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -452,7 +447,7 @@ const Index = () => {
                 <Mail className="text-blue-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">Email</h4>
-                  <p className="text-gray-300">ahmad.raza@example.com</p>
+                  <p className="text-gray-300">ahmadrajacpr@gmail.com</p>
                 </div>
               </a>
 
@@ -460,7 +455,7 @@ const Index = () => {
                 <Phone className="text-green-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">Phone</h4>
-                  <p className="text-gray-300">+91 12345 67890</p>
+                  <p className="text-gray-300">+91 7289095126</p>
                 </div>
               </a>
 
@@ -468,7 +463,7 @@ const Index = () => {
                 <Linkedin className="text-blue-600 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">LinkedIn</h4>
-                  <p className="text-gray-300">Connect with me</p>
+                  <p className="text-gray-300">https://www.linkedin.com/in/md-ahmad-raza-10735023b/</p>
                 </div>
               </a>
 
@@ -476,7 +471,7 @@ const Index = () => {
                 <Github className="text-gray-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">GitHub</h4>
-                  <p className="text-gray-300">View my projects</p>
+                  <p className="text-gray-300">https://github.com/AhmadRaza029</p>
                 </div>
               </a>
             </div>
@@ -505,5 +500,4 @@ const Index = () => {
       </footer>
     </div>;
 };
-
 export default Index;
