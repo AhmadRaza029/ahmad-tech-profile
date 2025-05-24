@@ -3,6 +3,7 @@ import { Menu, X, ArrowDown, Mail, Phone, Github, Linkedin, ExternalLink, Code, 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
+
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
@@ -163,13 +164,13 @@ const Index = () => {
 
               {/* Social Links */}
               <div className="flex gap-4 mt-8 justify-center lg:justify-start">
-                <a href="https://github.com/ahmad-raza" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
+                <a href="https://github.com/AhmadRaza029" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
                   <Github size={20} />
                 </a>
-                <a href="https://linkedin.com/in/ahmad-raza" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
+                <a href="https://www.linkedin.com/in/md-ahmad-raza-10735023b/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
                   <Linkedin size={20} />
                 </a>
-                <a href="mailto:ahmad.raza@example.com" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
+                <a href="mailto:ahmadrajacpr@gmail.com" className="p-3 rounded-full bg-slate-800/50 hover:bg-slate-700 transition-all duration-300 hover:scale-110 text-gray-400 hover:text-white">
                   <Mail size={20} />
                 </a>
               </div>
@@ -443,7 +444,7 @@ const Index = () => {
             </p>
             
             <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <a href="mailto:ahmad.raza@example.com" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-400 transition-colors group">
+              <a href="mailto:ahmadrajacpr@gmail.com" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-400 transition-colors group">
                 <Mail className="text-blue-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">Email</h4>
@@ -451,7 +452,7 @@ const Index = () => {
                 </div>
               </a>
 
-              <a href="tel:+1234567890" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-green-400 transition-colors group">
+              <a href="tel:+917289095126" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-green-400 transition-colors group">
                 <Phone className="text-green-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">Phone</h4>
@@ -459,7 +460,7 @@ const Index = () => {
                 </div>
               </a>
 
-              <a href="https://linkedin.com/in/ahmad-raza" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-600 transition-colors group">
+              <a href="https://www.linkedin.com/in/md-ahmad-raza-10735023b/" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-600 transition-colors group">
                 <Linkedin className="text-blue-600 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">LinkedIn</h4>
@@ -467,7 +468,7 @@ const Index = () => {
                 </div>
               </a>
 
-              <a href="https://github.com/ahmad-raza" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-gray-400 transition-colors group">
+              <a href="https://github.com/AhmadRaza029" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-gray-400 transition-colors group">
                 <Github className="text-gray-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">GitHub</h4>
@@ -477,7 +478,7 @@ const Index = () => {
             </div>
 
             <div className="text-center">
-              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 text-lg" onClick={() => window.open('mailto:ahmad.raza@example.com', '_blank')}>
+              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 text-lg" onClick={() => window.open('mailto:ahmadrajacpr@gmail.com', '_blank')}>
                 Send Message
               </Button>
             </div>
