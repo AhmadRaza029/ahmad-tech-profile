@@ -3,31 +3,31 @@ import { Menu, X, ArrowDown, Mail, Phone, Github, Linkedin, ExternalLink, Code, 
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-
 const Index = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
   const [isVisible, setIsVisible] = useState(false);
-
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      element.scrollIntoView({
+        behavior: 'smooth'
+      });
     }
     setIsMenuOpen(false);
   };
-
   useEffect(() => {
     setIsVisible(true);
-    
     const handleScroll = () => {
       const sections = ['home', 'about', 'portfolio', 'skills', 'contact'];
       const scrollPosition = window.scrollY + 100;
-
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {
-          const { offsetTop, offsetHeight } = element;
+          const {
+            offsetTop,
+            offsetHeight
+          } = element;
           if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
             setActiveSection(section);
             break;
@@ -35,19 +35,30 @@ const Index = () => {
         }
       }
     };
-
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  const navigationItems = [
-    { id: 'home', label: 'Home', icon: User },
-    { id: 'about', label: 'About', icon: User },
-    { id: 'portfolio', label: 'Portfolio', icon: Briefcase },
-    { id: 'skills', label: 'Skills', icon: Code },
-    { id: 'contact', label: 'Contact', icon: MessageCircle }
-  ];
-
+  const navigationItems = [{
+    id: 'home',
+    label: 'Home',
+    icon: User
+  }, {
+    id: 'about',
+    label: 'About',
+    icon: User
+  }, {
+    id: 'portfolio',
+    label: 'Portfolio',
+    icon: Briefcase
+  }, {
+    id: 'skills',
+    label: 'Skills',
+    icon: Code
+  }, {
+    id: 'contact',
+    label: 'Contact',
+    icon: MessageCircle
+  }];
   const skills = {
     'Programming Languages': ['JavaScript (ES6+)', 'TypeScript', 'Dart (Flutter)', 'HTML5', 'CSS3', 'SCSS'],
     'Frameworks & Libraries': ['React.js', 'Next.js', 'Flutter'],
@@ -55,9 +66,7 @@ const Index = () => {
     'Tools & Technologies': ['Git & GitHub', 'VS Code', 'REST APIs', 'JWT', 'Firebase SDK', 'Appwrite SDK'],
     'Other Expertise': ['Responsive Web Design', 'SPA Development', 'Cross-platform Mobile Development', 'UI/UX Design', 'Animation Libraries']
   };
-
-  return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
+  return <div className="min-h-screen bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 relative overflow-hidden">
       {/* Animated Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute -top-40 -right-40 w-80 h-80 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
@@ -78,46 +87,25 @@ const Index = () => {
 
             {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className={`text-sm font-medium transition-all duration-300 hover:text-blue-400 relative ${
-                    activeSection === item.id ? 'text-blue-400' : 'text-gray-300'
-                  }`}
-                >
+              {navigationItems.map(item => <button key={item.id} onClick={() => scrollToSection(item.id)} className={`text-sm font-medium transition-all duration-300 hover:text-blue-400 relative ${activeSection === item.id ? 'text-blue-400' : 'text-gray-300'}`}>
                   {item.label}
-                  {activeSection === item.id && (
-                    <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>
-                  )}
-                </button>
-              ))}
+                  {activeSection === item.id && <div className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-400 to-purple-500 rounded-full"></div>}
+                </button>)}
             </div>
 
             {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-white p-2 rounded-lg hover:bg-slate-800 transition-colors"
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-            >
+            <button className="md:hidden text-white p-2 rounded-lg hover:bg-slate-800 transition-colors" onClick={() => setIsMenuOpen(!isMenuOpen)}>
               {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
 
           {/* Mobile Navigation */}
-          {isMenuOpen && (
-            <div className="md:hidden py-4 bg-slate-800/95 backdrop-blur-sm rounded-lg mt-2 border border-slate-700">
-              {navigationItems.map((item) => (
-                <button
-                  key={item.id}
-                  onClick={() => scrollToSection(item.id)}
-                  className="flex items-center w-full px-4 py-3 text-left text-gray-300 hover:text-blue-400 hover:bg-slate-700/50 transition-all duration-200"
-                >
+          {isMenuOpen && <div className="md:hidden py-4 bg-slate-800/95 backdrop-blur-sm rounded-lg mt-2 border border-slate-700">
+              {navigationItems.map(item => <button key={item.id} onClick={() => scrollToSection(item.id)} className="flex items-center w-full px-4 py-3 text-left text-gray-300 hover:text-blue-400 hover:bg-slate-700/50 transition-all duration-200">
                   <item.icon size={18} className="mr-3" />
                   {item.label}
-                </button>
-              ))}
-            </div>
-          )}
+                </button>)}
+            </div>}
         </div>
       </nav>
 
@@ -125,9 +113,7 @@ const Index = () => {
       <section id="home" className="min-h-screen flex items-center pt-16 relative">
         <div className="container mx-auto px-4 relative z-10">
           <div className="flex flex-col lg:flex-row items-center justify-between gap-12">
-            <div className={`lg:w-1/2 text-center lg:text-left transition-all duration-1000 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <div className={`lg:w-1/2 text-center lg:text-left transition-all duration-1000 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               {/* Status Badge */}
               <div className="inline-flex items-center px-4 py-2 bg-green-500/10 border border-green-500/20 rounded-full text-green-400 text-sm font-medium mb-6">
                 <div className="w-2 h-2 bg-green-400 rounded-full mr-2 animate-pulse"></div>
@@ -137,9 +123,7 @@ const Index = () => {
               <h1 className="text-5xl lg:text-7xl font-bold text-white mb-6 leading-tight">
                 Hi, I'm{' '}
                 <span className="relative">
-                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">
-                    Ahmad Raza
-                  </span>
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-purple-500 to-cyan-400">Md Ahmad Raza</span>
                   <div className="absolute -inset-1 bg-gradient-to-r from-blue-400/20 via-purple-500/20 to-cyan-400/20 blur-xl -z-10"></div>
                 </span>
               </h1>
@@ -167,18 +151,11 @@ const Index = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                <Button 
-                  onClick={() => scrollToSection('contact')}
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105"
-                >
+                <Button onClick={() => scrollToSection('contact')} className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-4 text-lg font-semibold rounded-xl shadow-2xl hover:shadow-purple-500/25 transition-all duration-300 transform hover:scale-105">
                   <Mail className="w-5 h-5 mr-2" />
                   Get In Touch
                 </Button>
-                <Button 
-                  variant="outline"
-                  className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300"
-                  onClick={() => scrollToSection('portfolio')}
-                >
+                <Button variant="outline" className="border-slate-600 text-slate-300 hover:bg-slate-800 hover:text-white px-8 py-4 text-lg font-semibold rounded-xl transition-all duration-300" onClick={() => scrollToSection('portfolio')}>
                   <Download className="w-5 h-5 mr-2" />
                   View Projects
                 </Button>
@@ -199,15 +176,18 @@ const Index = () => {
             </div>
 
             {/* Enhanced Profile Picture Section */}
-            <div className={`lg:w-1/2 flex justify-center transition-all duration-1000 delay-300 ${
-              isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'
-            }`}>
+            <div className={`lg:w-1/2 flex justify-center transition-all duration-1000 delay-300 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
               <div className="relative">
                 {/* Animated rings */}
-                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-600 p-1 animate-spin" style={{animationDuration: '8s'}}>
+                <div className="absolute inset-0 rounded-full bg-gradient-to-r from-blue-400 to-purple-600 p-1 animate-spin" style={{
+                animationDuration: '8s'
+              }}>
                   <div className="w-full h-full rounded-full bg-slate-900"></div>
                 </div>
-                <div className="absolute inset-2 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 p-1 animate-spin" style={{animationDuration: '6s', animationDirection: 'reverse'}}>
+                <div className="absolute inset-2 rounded-full bg-gradient-to-r from-purple-400 to-cyan-400 p-1 animate-spin" style={{
+                animationDuration: '6s',
+                animationDirection: 'reverse'
+              }}>
                   <div className="w-full h-full rounded-full bg-slate-900"></div>
                 </div>
                 
@@ -215,11 +195,7 @@ const Index = () => {
                 <div className="relative w-80 h-80 lg:w-96 lg:h-96 rounded-full bg-gradient-to-br from-blue-400 via-purple-500 to-cyan-400 p-2 shadow-2xl">
                   <div className="w-full h-full rounded-full bg-slate-800 flex items-center justify-center relative overflow-hidden p-1">
                     {/* Profile Image */}
-                    <img 
-                      src="https://i.postimg.cc/pLFCGpCv/BARC.jpg" 
-                      alt="Ahmad Raza"
-                      className="w-full h-full rounded-full object-cover shadow-inner"
-                    />
+                    <img src="https://i.postimg.cc/pLFCGpCv/BARC.jpg" alt="Ahmad Raza" className="w-full h-full rounded-full object-cover shadow-inner" />
                     
                     {/* Floating particles */}
                     <div className="absolute top-4 right-4 w-2 h-2 bg-blue-400 rounded-full animate-ping"></div>
@@ -376,22 +352,18 @@ const Index = () => {
         <div className="container mx-auto px-4">
           <h2 className="text-4xl font-bold text-white text-center mb-12">Skills & Expertise</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {Object.entries(skills).map(([category, skillList]) => (
-              <Card key={category} className="bg-slate-700 border-slate-600">
+            {Object.entries(skills).map(([category, skillList]) => <Card key={category} className="bg-slate-700 border-slate-600">
                 <CardHeader>
                   <CardTitle className="text-white text-lg">{category}</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <div className="flex flex-wrap gap-2">
-                    {skillList.map((skill) => (
-                      <Badge key={skill} variant="secondary" className="bg-slate-600 text-gray-200">
+                    {skillList.map(skill => <Badge key={skill} variant="secondary" className="bg-slate-600 text-gray-200">
                         {skill}
-                      </Badge>
-                    ))}
+                      </Badge>)}
                   </div>
                 </CardContent>
-              </Card>
-            ))}
+              </Card>)}
           </div>
         </div>
       </section>
@@ -407,10 +379,7 @@ const Index = () => {
             </p>
             
             <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <a 
-                href="mailto:ahmad.raza@example.com"
-                className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-400 transition-colors group"
-              >
+              <a href="mailto:ahmad.raza@example.com" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-400 transition-colors group">
                 <Mail className="text-blue-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">Email</h4>
@@ -418,10 +387,7 @@ const Index = () => {
                 </div>
               </a>
 
-              <a 
-                href="tel:+1234567890"
-                className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-green-400 transition-colors group"
-              >
+              <a href="tel:+1234567890" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-green-400 transition-colors group">
                 <Phone className="text-green-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">Phone</h4>
@@ -429,12 +395,7 @@ const Index = () => {
                 </div>
               </a>
 
-              <a 
-                href="https://linkedin.com/in/ahmad-raza"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-600 transition-colors group"
-              >
+              <a href="https://linkedin.com/in/ahmad-raza" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-blue-600 transition-colors group">
                 <Linkedin className="text-blue-600 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">LinkedIn</h4>
@@ -442,12 +403,7 @@ const Index = () => {
                 </div>
               </a>
 
-              <a 
-                href="https://github.com/ahmad-raza"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-gray-400 transition-colors group"
-              >
+              <a href="https://github.com/ahmad-raza" target="_blank" rel="noopener noreferrer" className="flex items-center p-4 bg-slate-800 rounded-lg border border-slate-600 hover:border-gray-400 transition-colors group">
                 <Github className="text-gray-400 mr-3 group-hover:scale-110 transition-transform" size={24} />
                 <div>
                   <h4 className="text-white font-semibold">GitHub</h4>
@@ -457,10 +413,7 @@ const Index = () => {
             </div>
 
             <div className="text-center">
-              <Button 
-                className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 text-lg"
-                onClick={() => window.open('mailto:ahmad.raza@example.com', '_blank')}
-              >
+              <Button className="bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700 text-white px-8 py-3 text-lg" onClick={() => window.open('mailto:ahmad.raza@example.com', '_blank')}>
                 Send Message
               </Button>
             </div>
@@ -481,8 +434,6 @@ const Index = () => {
           </div>
         </div>
       </footer>
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
